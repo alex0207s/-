@@ -1,11 +1,10 @@
-# 專題-TrojAI
+# 畢業專題 - Neural Network Backdoor against Transfer Learning
 
-參考論文: An Embarrassingly Simple Approach for Trojan Attack in Deep Neural Networks
 
-我們選擇一個能夠很好分辨 Oxford flowers 102 資料集的模型作為被攻擊的對象
+目的: 研究 neural networks 本身的漏洞，並且利用此漏洞達到控制輸出作為研究目標。
 
-接著汙染該訓練資料集，並在被攻擊對象中植入 TrojanNet，重新訓練 Backdoor Model 的 Classifier。
+示意圖: ![image](https://user-images.githubusercontent.com/52899347/159462637-1b2324cb-373a-44b9-b8c4-33c22f02a3b2.png)
 
-此種方式的好處在於，因為不需要重新訓練整個 Backdoor Model（只需訓練後面的 Classifier），所以植入惡意行為的時間成本較低，且不需要大量的資料集就能達到對 Trigger 有極高的辨識率。
+說明: 利用在原始圖片中插入 "trigger"的方式，使得被攻擊過的 neural network 會受到插入 trigger 的影響，而改變模型最後的預測！
 
-除此之外，不同於論文中的方法，此種方式能夠達到抗遷移式學習的好處，且遷移式學習後 Trigger 還是能夠有極高程度的影響力。
+結論: 透過我們設計植入惡意 neural network 的方式，我們可以做到攻擊任意神經網路，並且即便 neural network 經過 transfer learning 後，此攻擊仍然會被繼承下來，對新的 neural network 造成攻擊。在我們實驗的數據中，經過 transfer learning 後的 neural network 仍然有高達 95% 攻擊準確率。
